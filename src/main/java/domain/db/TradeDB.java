@@ -5,16 +5,16 @@ import domain.model.Trade;
 
 import java.util.ArrayList;
 
-public class tradeDB {
+public class TradeDB {
     private ArrayList<Trade> trades = new ArrayList<>();
 
-    public tradeDB() {
+    public TradeDB() {
         this.addTrade(new Trade(null, null));
         this.addTrade(new Trade(null, null));
         this.addTrade(new Trade(null, null));
     }
 
-    public ArrayList<Trade> getTrades() {
+    public ArrayList<Trade> getAllTrades() {
         return trades;
     }
 
