@@ -1,12 +1,22 @@
 package domain.model;
 
-public class Trade {
+public class Trade implements Comparable {
+    private String nickname;
     private Offer myOffer;
     private Offer myNeed;
 
-    public Trade(Offer myOffer, Offer myNeed) {
+    public Trade(String nickname, Offer myOffer, Offer myNeed) {
+        this.nickname = nickname;
         this.myOffer = myOffer;
         this.myNeed = myNeed;
+    }
+
+    public String getNickname() {
+        return this.nickname;
+    }
+
+    public void setNickname(String nickname){
+        this.nickname = nickname;
     }
 
     public Offer getMyOffer() {
@@ -23,5 +33,10 @@ public class Trade {
 
     public void setMyNeed(Offer myNeed) {
         this.myNeed = myNeed;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0; //TODO
     }
 }

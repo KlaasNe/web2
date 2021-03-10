@@ -3,22 +3,20 @@ package domain.db;
 import domain.model.Offer;
 import domain.model.Trade;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class TradeDB {
     private ArrayList<Trade> trades = new ArrayList<>();
 
     public TradeDB() {
-        this.addTrade(new Trade(null, null));
-        this.addTrade(new Trade(null, null));
-        this.addTrade(new Trade(null, null));
+        this.trades = new ArrayList<Trade>();
     }
 
     public ArrayList<Trade> getAllTrades() {
         return trades;
     }
 
-    private void addTrade(Trade trade) {
+    public void addTrade(Trade trade) {
         if (trade.getMyOffer().getName() == null || trade.getMyOffer().getAmount() == 0) {
             throw new IllegalArgumentException("Don't beg for items >:(");
         } else {
@@ -28,4 +26,12 @@ public class TradeDB {
             trades.add(trade);
         }
     }
+
+    public void removeTrade(Trade trade) {
+        this.getAllTrades().remove(trade);
+    }
+
+//    public String getCheapest() {
+//        return Collections.sort(this.getAllTrades())[0];
+//    }
 }

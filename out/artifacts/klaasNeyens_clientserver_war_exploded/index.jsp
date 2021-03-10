@@ -5,32 +5,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Trading Overview</title>
+    <title>Minecraft Trading</title>
     <link type="text/css" href="style/style.css" rel="stylesheet"/>
 </head>
 <body>
 <div id="container">
     <%@ include file="header.jsp" %>
     <main>
-        <h1>Trades overview</h1>
+        <h1>Minecraft Trading</h1>
         <p>
-        <table>
-            <tr>
-                <th>Nickname</th>
-                <th>Want</th>
-                <th>Amount</th>
-                <th>Has</th>
-                <th>Amount</th>
-            </tr>
-        <tr>
-            <td>lets</td>
-            <td>fucking</td>
-            <td>go</td>
-            <td>I</td>
-            <td>guess?</td>
-        </tr>
-        </table>
+            Op deze website kan je verzoeken doen om items te traden op de minecraft server met ip:
+            <em>mc.iswleuven.be</em>
         </p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia
+            culpa esse. Delectus nemo similique reiciendis provident quas sunt
+            fuga numquam neque quibusdam eum libero eius sit nam asperiores sequi
+            voluptatum!</p>
+
     </main>
     <%@ include file="footer.jsp" %>
 </div>
