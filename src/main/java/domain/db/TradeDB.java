@@ -27,8 +27,8 @@ public class TradeDB {
         }
     }
 
-    public void removeTrade(Trade trade) {
-        this.getAllTrades().remove(trade);
+    public void removeTrade(int id) {
+        this.getAllTrades().removeIf(trade -> trade.getId() == id);
     }
 
 //    public String getCheapest() {

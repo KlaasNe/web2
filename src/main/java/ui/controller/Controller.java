@@ -11,11 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/Servlet")
-public class Servlet extends HttpServlet {
-    private TradeDB tradeDB = new TradeDB();
+@WebServlet("/Controller")
+public class Controller extends HttpServlet {
+    private TradeDB trades = new TradeDB();
 
-    public Servlet() {
+    public Controller() {
         super();
     }
 
@@ -35,19 +35,16 @@ public class Servlet extends HttpServlet {
         if (request.getParameter("command") != null) {
             command = request.getParameter("command");
         }
-        String destination = null;
+        String destination;
         switch (command) {
             case "home":
-//                destination = home(request, response);
+                destination = home(request, response);
                 break;
             case "overview":
                 destination = overview(request, response);
                 break;
             case "add":
                 destination = add(request, response);
-                break;
-            case "deleteConfirmation":
-//                destination = getDeleteConfirmation();
                 break;
             case "delete":
                 destination = delete(request, response);
@@ -65,25 +62,38 @@ public class Servlet extends HttpServlet {
     }
 
     private String overview(HttpServletRequest request, HttpServletResponse response) {
-//        request.setAttribute("trades", tradeDB.getAllTrades());
+        request.setAttribute("trades", trades.getAllTrades());
         return "overview.jsp";
     }
 
     private String add(HttpServletRequest request, HttpServletResponse response) {
         String nickname = request.getParameter("nickname");
         String want = request.getParameter("want1");
-        int wantAmount = Integer.parseInt(request.getParameter("want2"));
         String have = request.getParameter("have1");
-        int haveAmount = Integer.parseInt(request.getParameter("have2"));
-        Trade trade = new Trade(nickname, new Offer(want, wantAmount), new Offer(have, haveAmount));
-        tradeDB.addTrade(trade);
-        return "overview.jsp";
+        if (have.equals("")) { return "add.jsp"; }
+        int wantAmount;
+        int haveAmount;
+        try {
+            wantAmount = Integer.parseInt(request.getParameter("want2"));
+            haveAmount = Integer.parseInt(request.getParameter("have2"));
+        } catch (NumberFormatException e) {
+            if (request.getParameter("have2").equals("")) {
+                return "add.jsp";
+            } else if (request.getParameter("want2").equals("")) {
+                haveAmount = Integer.parseInt(request.getParameter("have2"));
+                wantAmount = 0;
+            } else {
+                throw new IllegalArgumentException();
+            }
+        }
+        Trade trade = new Trade(nickname, new Offer(have, haveAmount), new Offer(want, wantAmount));
+        trades.addTrade(trade);
+        return overview(request, response);
     }
 
     private String delete(HttpServletRequest request, HttpServletResponse response) {
-//        String naam = request.getParameter("naam");
-//        tradeDB.removeTrade(naam);
-//        return overview(request, response);
-        return null;
+        int id = Integer.parseInt(request.getParameter("id"));
+        trades.removeTrade(id);
+        return overview(request, response);
     }
 }

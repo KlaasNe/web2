@@ -13,7 +13,7 @@
     <%@ include file="header.jsp" %>
     <main>
         <h1>Add trade</h1>
-        <form method="post" action="Servlet?command=add" novalidate>
+        <form method="POST" action="Controller?command=add" novalidate>
             <fieldset>
                 <legend><strong>Your in game name</strong></legend>
                 <p>

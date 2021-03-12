@@ -1,3 +1,5 @@
+<%@ page import="domain.model.Trade" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <!DOCTYPE html>
@@ -13,24 +15,46 @@
     <%@ include file="header.jsp" %>
     <main>
         <h1>Trades overview</h1>
-        <p>
+        <% ArrayList<Trade> trades = (ArrayList<Trade>) request.getAttribute("trades"); %>
+        <%
+            try {
+                for (Trade trade : trades) {
+        %>
         <table>
             <tr>
                 <th>Nickname</th>
-                <th>Want</th>
-                <th>Amount</th>
                 <th>Has</th>
                 <th>Amount</th>
+                <th>Wants</th>
+                <th>Amount</th>
+                <th></th>
+                <th></th>
             </tr>
-        <tr>
-            <td>lets</td>
-            <td>fucking</td>
-            <td>go</td>
-            <td>I</td>
-            <td>guess?</td>
-        </tr>
+            <tr>
+                <td>
+                    <%=trade.getNickname()%>
+                </td>
+                <td>
+                    <%=trade.getMyOffer().getName()%>
+                </td>
+                <td>
+                    <%=trade.getMyOffer().getAmount()%>
+                </td>
+                <td>
+                    <%=trade.getMyNeed().getName()%>
+                </td>
+                <td>
+                    <%=trade.getMyNeed().getAmount()%>
+                </td>
+                <td><a>edit</a></td>
+                <td><a href="Controller?command=delete&id=<%= trade.getId() %>">Delete</a></td>
+            </tr>
         </table>
-        </p>
+        <%
+            }
+        } catch (NullPointerException e) { %>
+        <p></p>
+        <% } %>
     </main>
     <%@ include file="footer.jsp" %>
 </div>
