@@ -33,6 +33,31 @@ public class TradeDB {
 
     public Trade getCheapest() {
         this.getAllTrades().sort(Trade::compareTo);
-        return this.getAllTrades().get(0);
+        try {
+            return this.getAllTrades().get(0);
+        } catch (IndexOutOfBoundsException e) {
+            return null;
+        }
+    }
+
+    public ArrayList<Trade> findTradesHaving(String item) {
+        ArrayList<Trade> fTrades = new ArrayList<>();
+        for (Trade trade : this.getAllTrades()) {
+            System.out.println(trade.getMyNeed().getName());
+            if (trade.getMyNeed().getName().toLowerCase().equals(item.toLowerCase())) {
+                fTrades.add(trade);
+            }
+        }
+        return fTrades;
+    }
+
+    public ArrayList<Trade> findTradesWanting(String item) {
+        ArrayList<Trade> fTrades = new ArrayList<>();
+        for (Trade trade : this.getAllTrades()) {
+            if (trade.getMyOffer().getName().toLowerCase().equals(item.toLowerCase())) {
+                fTrades.add(trade);
+            }
+        }
+        return fTrades;
     }
 }

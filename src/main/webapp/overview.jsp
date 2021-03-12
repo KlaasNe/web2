@@ -15,6 +15,9 @@
     <%@ include file="header.jsp" %>
     <main>
         <h1>Trades overview</h1>
+        <p>
+            <%@ include file="searchForm.jsp" %>
+        </p>
         <% ArrayList<Trade> trades = (ArrayList<Trade>) request.getAttribute("trades");
             if (trades.size() != 0) { %>
         <table>

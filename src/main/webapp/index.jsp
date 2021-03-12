@@ -24,7 +24,7 @@
         <p>Very empty, much silent. Be the first to <a href="add.jsp">add a new trade</a>.</p>
         <% } else { %>
         <p>
-            The cheapest trade was made by <%= ((Trade) request.getAttribute("cheapest")).getNickname() %>.
+            The cheapest trade was made by <a href="Controller?command=overview"><%= ((Trade) request.getAttribute("cheapest")).getNickname() %></a>.
         </p>
         <% } %>
 

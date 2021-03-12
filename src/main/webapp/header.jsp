@@ -3,8 +3,9 @@
     <nav>
         <ul>
             <li><a href="Controller?command=home">Home</a></li>
-            <li><a href="add.jsp">New trade</a></li>
             <li><a href="Controller?command=overview">Overview</a></li>
+            <li><a href="add.jsp">New trade</a></li>
+            <li><a href="search.jsp">Search</a></li>
         </ul>
     </nav>
 </header>
