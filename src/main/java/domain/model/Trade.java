@@ -43,6 +43,6 @@ public class Trade implements Comparable {
 
     @Override
     public int compareTo(Object o) {
-        return 0; //TODO
+        return this.getMyNeed().getAmount() - ((Trade)o).getMyNeed().getAmount();
     }
 }

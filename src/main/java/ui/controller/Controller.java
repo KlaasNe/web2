@@ -52,6 +52,9 @@ public class Controller extends HttpServlet {
             case "delete":
                 destination = delete(request, response);
                 break;
+            case "search":
+                destination = search(request, response);
+                break;
             default:
                 destination = home(request, response);
         }
@@ -59,8 +62,8 @@ public class Controller extends HttpServlet {
     }
 
     private String home(HttpServletRequest request, HttpServletResponse response) {
-//        Trade cheapest = db.getCheapest();
-//        request.setAttribute("cheapest", cheapest);
+        request.setAttribute("cheapest", trades.getCheapest());
+        request.setAttribute("trades", trades.getAllTrades());
         return "index.jsp";
     }
 
@@ -88,6 +91,8 @@ public class Controller extends HttpServlet {
             } else {
                 throw new IllegalArgumentException();
             }
+        } catch(IllegalArgumentException e) {
+            return "add.jsp";
         }
         Trade trade = new Trade(nickname, new Offer(have, haveAmount), new Offer(want, wantAmount));
         trades.addTrade(trade);
@@ -102,5 +107,16 @@ public class Controller extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         trades.removeTrade(id);
         return overview(request, response);
+    }
+
+    private String search(HttpServletRequest request, HttpServletResponse response) {
+        String tradeDir = request.getParameter("search-select");
+        String item = request.getParameter("search-bar");
+        if (tradeDir.equals("have")) {
+            request.setAttribute("trades", trades.findTradesHaving(item));
+        } else if (tradeDir.equals("want")) {
+            request.setAttribute("trades", trades.findTradesWanting(item));
+        }
+        return "overview.jsp";
     }
 }

@@ -15,11 +15,11 @@
     <%@ include file="header.jsp" %>
     <main>
         <h1>Trades overview</h1>
-        <% ArrayList<Trade> trades = (ArrayList<Trade>) request.getAttribute("trades"); %>
-        <%
-            try {
-                for (Trade trade : trades) {
-        %>
+        <p>
+            <%@ include file="searchForm.jsp" %>
+        </p>
+        <% ArrayList<Trade> trades = (ArrayList<Trade>) request.getAttribute("trades");
+            if (trades.size() != 0) { %>
         <table>
             <tr>
                 <th>Nickname</th>
@@ -30,6 +30,10 @@
                 <th></th>
                 <th></th>
             </tr>
+            <%
+                try {
+                    for (Trade trade : trades) {
+            %>
             <tr>
                 <td>
                     <%=trade.getNickname()%>
@@ -49,12 +53,16 @@
                 <td><a>edit</a></td>
                 <td><a href="Controller?command=deleteConfirmation&id=<%= trade.getId() %>">Delete</a></td>
             </tr>
+            <%
+                    }
+                } catch (NullPointerException ignored) {
+                    ;
+                }%>
         </table>
-        <%
-            }
-        } catch (NullPointerException e) { %>
-        <p></p>
-        <% } %>
+        <% } else { %>
+        <h2>No trades available</h2>
+        <p>Be the first to <a href="add.jsp">add a new trade</a>.</p>
+        <%}%>
     </main>
     <%@ include file="footer.jsp" %>
 </div>
