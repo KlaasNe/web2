@@ -1,3 +1,5 @@
+<%@ page import="domain.model.Trade" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <!DOCTYPE html>
@@ -17,10 +19,14 @@
             Op deze website kan je verzoeken doen om items te traden op de minecraft server met ip:
             <em>mc.iswleuven.be</em>
         </p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia
-            culpa esse. Delectus nemo similique reiciendis provident quas sunt
-            fuga numquam neque quibusdam eum libero eius sit nam asperiores sequi
-            voluptatum!</p>
+        <% ArrayList<Trade> trades = (ArrayList<Trade>) request.getAttribute("trades");
+            if (trades == null || trades.size() == 0) { %>
+        <p>Very empty, much silent. Be the first to <a href="add.jsp">add a new trade</a>.</p>
+        <% } else { %>
+        <p>
+            The cheapest trade was made by <%= ((Trade) request.getAttribute("cheapest")).getNickname() %>.
+        </p>
+        <% } %>
 
     </main>
     <%@ include file="footer.jsp" %>

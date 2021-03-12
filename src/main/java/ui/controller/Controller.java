@@ -59,8 +59,8 @@ public class Controller extends HttpServlet {
     }
 
     private String home(HttpServletRequest request, HttpServletResponse response) {
-//        Trade cheapest = db.getCheapest();
-//        request.setAttribute("cheapest", cheapest);
+        request.setAttribute("cheapest", trades.getCheapest());
+        request.setAttribute("trades", trades.getAllTrades());
         return "index.jsp";
     }
 

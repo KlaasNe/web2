@@ -31,7 +31,8 @@ public class TradeDB {
         this.getAllTrades().removeIf(trade -> trade.getId() == id);
     }
 
-//    public String getCheapest() {
-//        return Collections.sort(this.getAllTrades())[0];
-//    }
+    public Trade getCheapest() {
+        this.getAllTrades().sort(Trade::compareTo);
+        return this.getAllTrades().get(0);
+    }
 }
