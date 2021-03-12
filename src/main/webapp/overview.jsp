@@ -47,7 +47,7 @@
                     <%=trade.getMyNeed().getAmount()%>
                 </td>
                 <td><a>edit</a></td>
-                <td><a href="Controller?command=delete&id=<%= trade.getId() %>">Delete</a></td>
+                <td><a href="Controller?command=deleteConfirmation&id=<%= trade.getId() %>">Delete</a></td>
             </tr>
         </table>
         <%
