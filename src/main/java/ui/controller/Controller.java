@@ -46,6 +46,9 @@ public class Controller extends HttpServlet {
             case "add":
                 destination = add(request, response);
                 break;
+            case "deleteConfirmation":
+                destination = getDeleteConfirmation();
+                break;
             case "delete":
                 destination = delete(request, response);
                 break;
@@ -89,6 +92,10 @@ public class Controller extends HttpServlet {
         Trade trade = new Trade(nickname, new Offer(have, haveAmount), new Offer(want, wantAmount));
         trades.addTrade(trade);
         return overview(request, response);
+    }
+
+    private String getDeleteConfirmation() {
+        return "deleteConfirmation.jsp";
     }
 
     private String delete(HttpServletRequest request, HttpServletResponse response) {
