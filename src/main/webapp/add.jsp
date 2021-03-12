@@ -13,28 +13,40 @@
     <%@ include file="header.jsp" %>
     <main>
         <h1>Add trade</h1>
-        <fieldset>
-            <legend><strong>You want</strong></legend>
+        <form method="POST" action="Controller?command=add" novalidate>
+            <fieldset>
+                <legend><strong>Your in game name</strong></legend>
+                <p>
+                    <label for="nickname"></label>
+                    <input type="text" id="nickname" name="nickname" required>
+                </p>
+            </fieldset>
+            <fieldset>
+                <legend><strong>You want</strong></legend>
+                <p>
+                    <label for="want"></label>
+                    <input type="text" id="want" name="want1">
+                </p>
+                <p>
+                    <label for="want-quantity">Quantity:</label>
+                    <input type="number" id="want-quantity" name="want2" min="0" value="quantity">
+                </p>
+            </fieldset>
+            <fieldset>
+                <legend><strong>You have</strong></legend>
+                <p>
+                    <label for="have"></label>
+                    <input type="text" id="have" name="have1" required>
+                </p>
+                <p>
+                    <label for="have-quantity">Quantity:</label>
+                    <input type="number" id="have-quantity" name="have2" min="0" value="quantity" required>
+                </p>
+            </fieldset>
             <p>
-                <label for="want"></label>
-                <input type="text" id="want" name="want1" required>
+                <input type="submit" value="Submit" id="submit">
             </p>
-            <p>
-                <label for="want-quantity">Quantity:</label>
-                <input type="number" id="want-quantity" name="want2" min="0" value="quantity" required>
-            </p>
-        </fieldset>
-        <fieldset>
-            <legend><strong>You have</strong></legend>
-            <p>
-                <label for="have"></label>
-                <input type="text" id="have" name="have1" required>
-            </p>
-            <p>
-                <label for="have-quantity">Quantity:</label>
-                <input type="number" id="have-quantity" name="have2" min="0" value="quantity" required>
-            </p>
-        </fieldset>
+        </form>
     </main>
     <%@ include file="footer.jsp" %>
 </div>

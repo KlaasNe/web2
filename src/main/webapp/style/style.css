@@ -70,6 +70,43 @@ h1 {
     border-radius: 5px;
 }
 
+#submit {
+    background: var(--bg);
+    color: var(--text);
+    border-radius: 20px;
+    text-shadow:none;
+    padding: 5px 20px;
+    transition: 200ms;
+}
+
+#submit:hover {
+    background: var(--highlight);
+    color: #000;
+    border-radius: 20px;
+    text-shadow:none;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    background-color: var(--bg);
+    color: var(--text);
+}
+
+tr:nth-child(even) {
+    background-color: #ddd;
+}
+
 footer {
     color: var(--bg2)
 }
