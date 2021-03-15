@@ -47,7 +47,7 @@ public class Controller extends HttpServlet {
                 destination = add(request, response);
                 break;
             case "deleteConfirmation":
-                destination = getDeleteConfirmation();
+                destination = getDeleteConfirmation(request, response);
                 break;
             case "delete":
                 destination = delete(request, response);
@@ -99,7 +99,8 @@ public class Controller extends HttpServlet {
         return overview(request, response);
     }
 
-    private String getDeleteConfirmation() {
+    private String getDeleteConfirmation(HttpServletRequest request, HttpServletResponse response) {
+        request.setAttribute("rmTrade", trades.getTrade(Integer.parseInt(request.getParameter("id"))));
         return "deleteConfirmation.jsp";
     }
 
