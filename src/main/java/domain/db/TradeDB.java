@@ -27,6 +27,15 @@ public class TradeDB {
         }
     }
 
+    public Trade getTrade(int id) {
+        for (Trade trade : this.getAllTrades()) {
+            if (trade.getId() == id) {
+                return trade;
+            }
+        }
+        return null;
+    }
+
     public void removeTrade(int id) {
         this.getAllTrades().removeIf(trade -> trade.getId() == id);
     }

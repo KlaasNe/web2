@@ -1,4 +1,4 @@
-
+<%@ page import="domain.model.Trade" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,7 +14,7 @@
     <%@ include file="header.jsp" %>
     <main>
         <h2>Confirmation</h2>
-        <p>Are you sure you want to remove this trade?</p>
+        <p>Are you sure you want to remove this trade by <%= ((Trade) request.getAttribute("rmTrade")).getNickname() %>?</p>
         <form action="Controller?command=delete&id=<%= request.getParameter("id") %>" method="POST">
             <input type="submit" value="Yes"/>
             <input type="button" value="No" onclick="location.href='Controller?command=overview'">
